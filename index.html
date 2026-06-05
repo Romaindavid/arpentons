@@ -282,6 +282,17 @@
                 });
 
                 if (res.ok || res.status === 204) {
+                    await fetch('https://api.brevo.com/v3/smtp/email', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'api-key': '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'
+                        },
+                        body: JSON.stringify({
+                            templateId: 5,
+                            to: [{ email, name: `${prenom} ${nom}` }]
+                        })
+                    });
                     msg.className = 'reg-msg success';
                     msg.textContent = '✓ Votre inscription est confirmée. À très vite !';
                     e.target.reset();
