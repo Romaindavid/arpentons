@@ -84,6 +84,8 @@
         .newsletter-section h3 { font-family: 'Playfair Display'; font-size: 2rem; margin: 0 0 1rem 0; color: white; }
         .newsletter-section input { padding: 12px; border: none; width: 220px; font-family: 'Spectral'; }
         .newsletter-section button { padding: 12px 25px; background: var(--ink); color: white; border: none; font-weight: bold; cursor: pointer; }
+        .newsletter-section button:disabled { opacity: 0.6; cursor: default; }
+        .newsletter-msg { margin-top: 12px; font-size: 0.9rem; min-height: 1.2em; }
 
         /* COLLECTIF - Photo redimensionnée */
         .team-section { margin-top: 2rem; text-align: center; }
@@ -157,13 +159,11 @@
         <section class="newsletter-section">
             <h3>On se voit à la prochaine ?</h3>
             <p>Si tu ne peux pas venir cette fois, laisse ton mail pour recevoir les invitations suivantes.</p>
-            <form id="sib-form" method="POST" action="https://022ace13.sibforms.com/serve/MUIFAHZAP5BWBtW08DJHt2jXHamm_uPOfbSqYcNvwKOlog2xtzf7NWO3ceVtCRt23NytrkKb_jLMtHqzMOKXqPtBhHuBjNgw8e4lh3fYrh-sq5PS7knglZtu8wgyIhcJ02TBGqq8dwfXDeUatucrp2jInUf9XJ2-zJ6fjb15HWafrLFWXI5GdUvLGMxTSFyGeQWJgKEBUPpAkL7F3w==">
-                <input type="email" id="EMAIL" name="EMAIL" placeholder="ton@email.com" required>
-                <input type="text" name="email_address_check" value="" style="display:none;">
-                <input type="hidden" name="locale" value="fr">
-                <input type="hidden" name="html_type" value="simple">
-                <button type="submit">OK !</button>
+            <form id="newsletter-form" novalidate>
+                <input type="email" id="newsletter-email" placeholder="ton@email.com" required>
+                <button type="submit" id="newsletter-btn">OK !</button>
             </form>
+            <div class="newsletter-msg" id="newsletter-msg"></div>
         </section>
 
         <section>
@@ -195,6 +195,48 @@
     </footer>
 
     <script>
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('newsletter-btn');
+            const msg = document.getElementById('newsletter-msg');
+            const email = document.getElementById('newsletter-email').value.trim();
+
+            if (!email) return;
+
+            btn.disabled = true;
+            btn.textContent = '…';
+            msg.textContent = '';
+            msg.style.color = 'white';
+
+            try {
+                const res = await fetch('https://api.brevo.com/v3/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': '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'
+                    },
+                    body: JSON.stringify({ email, listIds: [2], updateEnabled: true })
+                });
+
+                if (res.ok || res.status === 204) {
+                    msg.textContent = '✓ À très vite !';
+                    e.target.reset();
+                } else {
+                    const data = await res.json();
+                    if (data.code === 'duplicate_parameter') {
+                        msg.textContent = '✓ Tu es déjà inscrit·e !';
+                    } else {
+                        throw new Error();
+                    }
+                }
+            } catch {
+                msg.textContent = 'Une erreur est survenue, réessaie.';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'OK !';
+            }
+        });
+
         document.getElementById('event-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('reg-btn');
