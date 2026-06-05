@@ -5,314 +5,398 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arpentons ! — La Rochelle</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Spectral:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Hanken+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#662a00",
+                        "surface-container-low": "#f5f3ee",
+                        "outline": "#75777d",
+                        "surface-container-high": "#eae8e3",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#fd853c",
+                        "surface-dim": "#dbdad5",
+                        "background": "#fbf9f4",
+                        "paper-dark": "#E5E1D8",
+                        "secondary": "#9d4400",
+                        "surface-bright": "#fbf9f4",
+                        "on-surface-variant": "#45474c",
+                        "surface-container": "#f0eee9",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c19",
+                        "inverse-surface": "#30312e",
+                        "on-primary": "#ffffff",
+                        "surface": "#fbf9f4",
+                        "primary": "#182232",
+                        "primary-container": "#2d3748",
+                        "tertiary": "#2c1f07",
+                        "on-background": "#1b1c19",
+                        "outline-variant": "#c5c6cd",
+                        "on-tertiary": "#ffffff",
+                        "ink-subtle": "#718096",
+                        "secondary-fixed": "#ffdbca",
+                        "on-secondary-fixed": "#331100",
+                        "surface-variant": "#e4e2dd",
+                        "surface-container-highest": "#e4e2dd",
+                        "error": "#ba1a1a",
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        gutter: "1.5rem",
+                        "container-max": "800px",
+                        "element-gap": "1rem",
+                        "section-gap": "4rem"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "label-sm": ["14px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "600" }],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --ink: #2c3e50;
-            --paper: #f8f5f0;
-            --accent: #e67e22; /* Terre de Sienne */
-            --highlight: #a3b18a; /* Vert Sauge */
-            --border: 2px solid var(--ink);
-        }
+        body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+        .paper-shadow { box-shadow: 4px 4px 0px 0px #E5E1D8; }
+        .terracotta-shadow { box-shadow: 6px 6px 0px 0px #9d4400; }
 
-        body { font-family: 'Spectral', serif; line-height: 1.5; color: var(--ink); margin: 0; background: var(--paper); }
-
-        header { 
-            border-bottom: 4px solid var(--ink);
-            padding: 3.5rem 1rem 2.5rem 1rem;
-            text-align: center;
-            background: var(--highlight); 
-        }
-        h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 0.9; }
-        .tagline { font-size: 1.2rem; margin-top: 15px; font-weight: 700; display: inline-block; background: var(--ink); color: #fff; padding: 5px 15px; transform: rotate(-1deg); }
-        .location-notice { font-style: italic; font-size: 1rem; display: block; margin-top: 15px; font-weight: bold; }
-
-        .container { max-width: 720px; margin: auto; padding: 0 1.5rem; }
-
-        .registration-box {
-            border: var(--border); margin-top: -25px; background: white; padding: 2rem; box-shadow: 10px 10px 0px var(--accent);
-        }
-
-        .reg-event-img { width: auto; max-width: 350px; height: auto; display: block; margin: 0 auto 1.5rem auto; }
-
-        .reg-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin: 0 0 1rem 0; }
-
-        .reg-desc { font-size: 0.95rem; color: #555; margin-bottom: 1.5rem; border-top: 1px solid #e5edf6; border-bottom: 1px solid #e5edf6; padding: 1rem 0; }
-
-        .reg-form { display: flex; flex-direction: column; gap: 1rem; }
-
-        .reg-form label { font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 4px; }
-
-        .reg-form input { width: 100%; padding: 10px 12px; border: 2px solid var(--ink); font-family: 'Spectral', serif; font-size: 1rem; box-sizing: border-box; background: var(--paper); }
-
-        .reg-form input:focus { outline: none; border-color: var(--accent); }
-
-        .reg-form input::placeholder { color: #aab; }
-
-        .reg-hint { font-size: 0.78rem; color: #8390a4; margin-top: 3px; }
-
-        .reg-submit { padding: 12px 30px; background: var(--ink); color: white; border: none; font-family: 'Spectral', serif; font-size: 1rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; align-self: flex-start; }
-
-        .reg-submit:hover { background: var(--accent); }
-
-        .reg-submit:disabled { opacity: 0.6; cursor: default; }
-
-        .reg-msg { padding: 12px 16px; border-radius: 2px; font-size: 0.95rem; display: none; margin-top: 0.5rem; }
-
+        /* Messages formulaire inscription */
+        .reg-msg { padding: 12px 16px; font-size: 0.95rem; display: none; margin-top: 0.5rem; }
         .reg-msg.success { background: #e7faf0; color: #085229; border: 1px solid #13ce66; display: block; }
-
         .reg-msg.error { background: #ffeded; color: #661d1d; border: 1px solid #ff4949; display: block; }
 
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 4rem 0 1.5rem 0; display: inline-block; position: relative; }
-        h2::after { content: ""; position: absolute; bottom: 5px; left: 0; width: 100%; height: 12px; background: var(--highlight); z-index: -1; opacity: 0.5; }
-
-        .highlight-box { border: var(--border); padding: 1.2rem; background: #fff; margin: 2rem 0; position: relative; }
-        .highlight-box::before { content: "LA MÉTHODE :"; position: absolute; top: -12px; left: 15px; background: var(--accent); color: white; padding: 2px 10px; font-weight: bold; font-size: 0.8rem; }
-        
-        .rule-item { margin-bottom: 1.5rem; padding: 1rem; border: 1px solid var(--ink); background: white; }
-        .rule-item strong { display: block; font-size: 1.2rem; font-family: 'Playfair Display'; color: var(--accent); }
-
-        /* NEWSLETTER - Version Simple HTML */
-        .newsletter-section { 
-            background: var(--accent);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            transform: rotate(-0.5deg);
-        }
-        .newsletter-section h3 { font-family: 'Playfair Display'; font-size: 2rem; margin: 0 0 1rem 0; color: white; }
-        .newsletter-section input { padding: 12px; border: none; width: 220px; font-family: 'Spectral'; }
-        .newsletter-section button { padding: 12px 25px; background: var(--ink); color: white; border: none; font-weight: bold; cursor: pointer; }
-        .newsletter-section button:disabled { opacity: 0.6; cursor: default; }
+        /* Message newsletter */
         .newsletter-msg { margin-top: 12px; font-size: 0.9rem; min-height: 1.2em; }
-
-        /* COLLECTIF - Photo redimensionnée */
-        .team-section { margin-top: 2rem; text-align: center; }
-        .photo-container {
-            position: relative; padding: 8px; background: white; border: var(--border); transform: rotate(1deg); margin: 0 auto 2rem auto; max-width: 380px; 
-        }
-        .team-photo { width: 100%; display: block; }
-
-        footer { border-top: var(--border); padding: 4rem 1rem; text-align: center; background: var(--ink); color: var(--paper); }
-        @media (max-width: 600px) {
-            h1 { font-size: 2.8rem; }
-            .newsletter-section input { width: 100%; margin-bottom: 10px; }
-            .reg-submit { width: 100%; text-align: center; }
-        }
     </style>
 </head>
-<body>
+<body class="font-body-md text-body-md">
 
-    <header>
-        <h1>Arpentons !</h1>
-        <p class="tagline">Lire ensemble</p>
-        <span class="location-notice">📍 Le collectif qui organise des arpentages à La Rochelle</span>
-    </header>
+<!-- Header -->
+<header class="w-full sticky top-0 bg-background/90 backdrop-blur-md z-50 border-b border-outline-variant">
+    <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto w-full">
+        <div class="flex flex-col">
+            <h1 class="text-headline-md font-headline-md text-primary tracking-tight">Arpentons !</h1>
+            <p class="text-[11px] text-on-surface-variant opacity-70 font-body-md">Le collectif qui organise des arpentages à La Rochelle</p>
+        </div>
+        <nav class="hidden md:flex gap-8 items-center">
+            <a href="#inscription" class="bg-primary text-on-primary px-4 py-2 font-label-sm text-label-sm hover:bg-primary-container transition-colors active:translate-y-px">S'INSCRIRE</a>
+        </nav>
+    </div>
+</header>
 
-    <div class="container">
-        <div class="registration-box">
-            <img class="reg-event-img" src="Etat de droit ordre bourgeois.jpg" alt="État de droit, ordre bourgeois — Elsa Marcel">
-            <p class="reg-title">Inscrivez-vous au prochain arpentage :</p>
-            <div class="reg-desc">
-                <p>📆 <strong>Lundi 15 juin</strong>, de 18h30 - 21h30 (accueil dès 18h)<br>
-                📍 Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle</p>
-                <p>📘 <strong>« État de droit, ordre bourgeois »</strong> d'Elsa Marcel<br>
-                Face aux gouvernements liberticides et aux violences policières, se défendre en justice devient à la fois plus nécessaire et plus difficile. Elsa Marcel montre comment garde des Sceaux, parquet et juges font bloc derrière le régime quand l'ordre social est mis en cause. Elle invite à renouer avec la défense politique des grands procès militants — FLN, Rosa Luxemburg, Tribunal Russell — pour repenser aujourd'hui les pratiques judiciaires au service des luttes.</p>
+<main class="max-w-container-max mx-auto px-gutter mb-section-gap">
+
+    <!-- Hero : couverture + formulaire -->
+    <section class="mt-element-gap md:mt-section-gap grid grid-cols-1 md:grid-cols-2 gap-12 items-start" id="inscription">
+
+        <!-- Gauche : infos + formulaire -->
+        <div class="order-2 md:order-1">
+            <div class="mb-8">
+                <span class="inline-block bg-secondary-fixed text-on-secondary-fixed text-[12px] font-bold px-2 py-1 mb-4">PROCHAIN RENDEZ-VOUS</span>
+                <h2 class="font-headline-lg text-headline-lg mb-4">Inscrivez-vous au prochain arpentage</h2>
+                <div class="space-y-4 border-l-2 border-paper-dark pl-4 mb-8">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-secondary shrink-0">calendar_today</span>
+                        <p class="font-body-md"><strong>Lundi 15 juin</strong>, de 18h30 - 21h30 (accueil dès 18h)</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-secondary shrink-0">location_on</span>
+                        <p class="font-body-md text-on-surface-variant">Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle</p>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low p-6 border border-outline-variant mb-8">
+                    <h3 class="font-label-sm text-label-sm text-secondary mb-2 uppercase tracking-widest">Le livre à l'honneur</h3>
+                    <p class="font-headline-md text-headline-md mb-2 italic">« État de droit, ordre bourgeois »</p>
+                    <p class="text-on-surface-variant leading-relaxed text-sm">
+                        Face aux gouvernements liberticides et aux violences policières, se défendre en justice devient à la fois plus nécessaire et plus difficile. Elsa Marcel montre comment garde des Sceaux, parquet et juges font bloc derrière le régime quand l'ordre social est mis en cause. Elle invite à renouer avec la défense politique des grands procès militants — FLN, Rosa Luxemburg, Tribunal Russell — pour repenser aujourd'hui les pratiques judiciaires au service des luttes.
+                    </p>
+                </div>
             </div>
-            <form class="reg-form" id="event-form" novalidate>
-                <div>
-                    <label for="reg-prenom">Prénom</label>
-                    <input type="text" id="reg-prenom" name="PRENOM" placeholder="Votre prénom" required>
+
+            <!-- Formulaire inscription événement — IDs et logique inchangés -->
+            <form class="space-y-6" id="event-form" novalidate>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="reg-prenom">Prénom</label>
+                        <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-prenom" name="PRENOM" placeholder="Votre prénom" type="text" required>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="reg-nom">Nom</label>
+                        <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-nom" name="NOM" placeholder="Votre nom" type="text" required>
+                    </div>
                 </div>
-                <div>
-                    <label for="reg-nom">Nom</label>
-                    <input type="text" id="reg-nom" name="NOM" placeholder="Votre nom" required>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="reg-email">Email *</label>
+                    <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-email" name="EMAIL" placeholder="votre@email.com" type="email" required>
                 </div>
-                <div>
-                    <label for="reg-tel">Téléphone <span style="font-weight:400">(facultatif)</span></label>
-                    <input type="tel" id="reg-tel" name="SMS" placeholder="Ex : 0612345678">
-                    <p class="reg-hint">Uniquement pour vous contacter en cas d'urgence le jour J.</p>
-                </div>
-                <div>
-                    <label for="reg-email">Email *</label>
-                    <input type="email" id="reg-email" name="EMAIL" placeholder="votre@email.com" required>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="reg-tel">Téléphone <span class="text-[10px] font-normal opacity-70 italic">(facultatif)</span></label>
+                    <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-tel" name="SMS" placeholder="06 00 00 00 00" type="tel">
+                    <p class="text-[11px] text-on-surface-variant mt-1 opacity-70">Uniquement pour vous contacter en cas d'urgence le jour J.</p>
                 </div>
                 <div class="reg-msg" id="reg-msg"></div>
-                <button type="submit" class="reg-submit" id="reg-btn">S'inscrire</button>
+                <button class="w-full bg-primary text-on-primary py-4 font-label-sm text-label-sm tracking-widest uppercase hover:bg-primary-container transition-all active:translate-y-1 terracotta-shadow" type="submit" id="reg-btn">S'INSCRIRE</button>
             </form>
         </div>
 
-        <section>
-            <h2>Qu'est ce que l'arpentage ?</h2>
-            <p>L’arpentage est une méthode d'éducation populaire pour décortiquer des livres complexes sans prise de tête.</p>
-            <div class="highlight-box">
-                <ul>
-                    <li><strong>On déchire le livre</strong> pour se partager les pages.</li>
-                    <li><strong>On lit tranquillement</strong> sa partie (on a le droit de ne pas tout comprendre !).</li>
-                    <li><strong>On met tout en commun</strong> pour construire une intelligence collective.</li>
-                </ul>
+        <!-- Droite : couverture du livre -->
+        <div class="order-1 md:order-2 flex justify-center md:sticky md:top-24">
+            <div class="relative max-w-[320px] w-full">
+                <div class="absolute inset-0 bg-secondary/10 translate-x-3 translate-y-3 -z-10"></div>
+                <img alt="État de droit, ordre bourgeois — Elsa Marcel" class="w-full shadow-2xl border-4 border-white" src="Etat de droit ordre bourgeois.jpg">
             </div>
-            <p>C'est joyeux, c'est politique et c'est surtout fait pour se réapproprier les idées qui nous concernent tous.</p>
-        </section>
+        </div>
+    </section>
 
-        <section class="newsletter-section">
-            <h3>On se voit à la prochaine ?</h3>
-            <p>Si tu ne peux pas venir cette fois, laisse ton mail pour recevoir les invitations suivantes.</p>
-            <form id="newsletter-form" novalidate>
-                <input type="email" id="newsletter-email" placeholder="ton@email.com" required>
-                <button type="submit" id="newsletter-btn">OK !</button>
+    <!-- Qu'est-ce que l'arpentage -->
+    <section class="mt-section-gap py-section-gap border-t border-outline-variant">
+        <div class="text-center mb-16">
+            <h2 class="font-headline-lg text-headline-lg mb-6">Qu'est-ce que l'arpentage ?</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+                L'arpentage est une méthode d'éducation populaire pour décortiquer des livres complexes sans prise de tête.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-surface-container border border-outline-variant paper-shadow">
+                <div class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-secondary">content_cut</span>
+                </div>
+                <h4 class="font-headline-md text-headline-md mb-4 text-secondary">1. Déchirer</h4>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">
+                    On déchire physiquement le livre pour se partager les pages. Symboliquement, on s'approprie l'objet.
+                </p>
+            </div>
+            <div class="p-8 bg-surface-container border border-outline-variant paper-shadow">
+                <div class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-secondary">menu_book</span>
+                </div>
+                <h4 class="font-headline-md text-headline-md mb-4 text-secondary">2. Lire</h4>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">
+                    Chacun lit sa partie tranquillement (environ 45 min). On a le droit de ne pas tout comprendre !
+                </p>
+            </div>
+            <div class="p-8 bg-surface-container border border-outline-variant paper-shadow">
+                <div class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-secondary">groups</span>
+                </div>
+                <h4 class="font-headline-md text-headline-md mb-4 text-secondary">3. Discuter</h4>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">
+                    On met tout en commun pour construire une intelligence collective. C'est joyeux et politique.
+                </p>
+            </div>
+        </div>
+        <p class="text-center text-on-surface-variant mt-8">C'est joyeux, c'est politique et c'est surtout fait pour se réapproprier les idées qui nous concernent tous.</p>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="mt-section-gap bg-secondary p-12 text-on-secondary relative overflow-hidden">
+        <div class="relative z-10 flex flex-col items-center text-center">
+            <h2 class="font-headline-lg text-headline-lg mb-4" style="color:white;">On se voit à la prochaine ?</h2>
+            <p class="font-body-md opacity-90 mb-8 max-w-lg">
+                Si tu ne peux pas venir cette fois, laisse ton mail pour recevoir les invitations suivantes.
+            </p>
+            <form id="newsletter-form" novalidate class="w-full max-w-md flex flex-col md:flex-row gap-0">
+                <input id="newsletter-email" type="email" placeholder="ton@email.com" required class="flex-grow p-4 text-on-surface border-0 focus:ring-0 h-14">
+                <button type="submit" id="newsletter-btn" class="bg-primary text-on-primary px-8 h-14 font-label-sm text-label-sm hover:bg-primary-container transition-colors uppercase tracking-widest active:translate-x-px">S'inscrire</button>
             </form>
             <div class="newsletter-msg" id="newsletter-msg"></div>
-        </section>
+        </div>
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rotate-45 pointer-events-none"></div>
+    </section>
 
-        <section>
-            <h2>À savoir avant de s'inscrire</h2>
-            <div class="rule-item">
-                <strong>Chaque présence compte</strong>
-                L'arpentage est un puzzle humain. Si tu manques à l'appel, il nous manquera des pages. Merci de nous prévenir si tu as un empêchement !
+    <!-- À savoir -->
+    <section class="mt-section-gap">
+        <h2 class="font-headline-md text-headline-md mb-8 border-b-4 border-secondary-fixed inline-block">À savoir avant de s'inscrire</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex gap-4 p-6 border border-outline-variant">
+                <span class="material-symbols-outlined text-secondary shrink-0">diversity_3</span>
+                <div>
+                    <h4 class="font-label-sm text-label-sm text-secondary uppercase mb-2">Chaque présence compte</h4>
+                    <p class="text-sm text-on-surface-variant">L'arpentage est un puzzle humain. Si tu manques à l'appel, il nous manquera des pages. Merci de nous prévenir si tu as un empêchement !</p>
+                </div>
             </div>
-            <div class="rule-item">
-                <strong>On s'adapte</strong>
-                Si on est trop peu nombreux·ses, on reporte la session. Tu seras prévenu·e par mail.
+            <div class="flex gap-4 p-6 border border-outline-variant">
+                <span class="material-symbols-outlined text-secondary shrink-0">autorenew</span>
+                <div>
+                    <h4 class="font-label-sm text-label-sm text-secondary uppercase mb-2">On s'adapte</h4>
+                    <p class="text-sm text-on-surface-variant">Si on est trop peu nombreux·ses, on reporte la session. Tu seras prévenu·e par mail à l'avance.</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="team-section">
-            <h2>Le collectif</h2>
-            <div class="photo-container">
-                <img src="collectif.jpg" alt="Collectif Arpentons" class="team-photo">
+    <!-- Le collectif -->
+    <section class="mt-section-gap py-section-gap text-center">
+        <h2 class="font-headline-lg text-headline-lg mb-12">Le collectif</h2>
+        <div class="relative max-w-2xl mx-auto mb-12">
+            <div class="absolute inset-0 bg-paper-dark -rotate-2 -z-10 translate-y-2"></div>
+            <div class="p-4 bg-white border border-outline-variant">
+                <img src="collectif.jpg" alt="Collectif Arpentons" class="w-full">
+                <p class="mt-4 font-label-sm text-[12px] text-outline italic">Rassemblement du collectif — La Rochelle</p>
             </div>
-            <div class="team-text">
-                <p><strong>Arpentons !</strong> est un collectif rochelais.</p>
-                <p>Tu souhaites en savoir plus ou nous filer un coup de main : <a href="mailto:contact@arpentons.fr" style="color:var(--accent); font-weight:bold;">contact@arpentons.fr</a></p>
-            </div>
-        </section>
+        </div>
+        <p class="font-body-lg text-body-lg mb-4"><strong>Arpentons !</strong> est un collectif rochelais.</p>
+        <p class="text-on-surface-variant">Tu souhaites en savoir plus ou nous filer un coup de main ? <a href="mailto:contact@arpentons.fr" class="text-secondary font-bold underline decoration-secondary-fixed hover:decoration-secondary transition-all">contact@arpentons.fr</a></p>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low border-t border-outline-variant py-section-gap mt-section-gap">
+    <div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto w-full gap-element-gap">
+        <div class="flex flex-col items-center md:items-start">
+            <h2 class="text-headline-md font-headline-md text-primary mb-2">Arpentons !</h2>
+            <p class="text-on-surface-variant text-sm">© 2025 Collectif Arpentons. Éducation Populaire.</p>
+        </div>
+        <div class="flex gap-8">
+            <a href="mailto:contact@arpentons.fr" class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors">Contact</a>
+        </div>
     </div>
+    <div class="mt-12 text-center">
+        <p class="font-label-sm text-label-sm text-outline opacity-50 uppercase tracking-[0.2em]">La Rochelle — France</p>
+    </div>
+</footer>
 
-    <footer>
-        <p><strong>ARPENTONS ! — LA ROCHELLE</strong></p>
-    </footer>
+<script>
+    document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('newsletter-btn');
+        const msg = document.getElementById('newsletter-msg');
+        const email = document.getElementById('newsletter-email').value.trim();
 
-    <script>
-        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('newsletter-btn');
-            const msg = document.getElementById('newsletter-msg');
-            const email = document.getElementById('newsletter-email').value.trim();
+        if (!email) return;
 
-            if (!email) return;
+        btn.disabled = true;
+        btn.textContent = '…';
+        msg.textContent = '';
+        msg.style.color = 'white';
 
-            btn.disabled = true;
-            btn.textContent = '…';
-            msg.textContent = '';
-            msg.style.color = 'white';
+        try {
+            const res = await fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
+                body: JSON.stringify({ email, listIds: [2], updateEnabled: true })
+            });
 
-            try {
-                const res = await fetch('https://api.brevo.com/v3/contacts', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'api-key': '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'
-                    },
-                    body: JSON.stringify({ email, listIds: [2], updateEnabled: true })
-                });
-
-                if (res.ok || res.status === 204) {
-                    msg.textContent = '✓ À très vite !';
-                    e.target.reset();
+            if (res.ok || res.status === 204) {
+                msg.textContent = '✓ À très vite !';
+                e.target.reset();
+            } else {
+                const data = await res.json();
+                if (data.code === 'duplicate_parameter') {
+                    msg.textContent = '✓ Tu es déjà inscrit·e !';
                 } else {
-                    const data = await res.json();
-                    if (data.code === 'duplicate_parameter') {
-                        msg.textContent = '✓ Tu es déjà inscrit·e !';
-                    } else {
-                        throw new Error();
-                    }
+                    throw new Error();
                 }
-            } catch {
-                msg.textContent = 'Une erreur est survenue, réessaie.';
-            } finally {
-                btn.disabled = false;
-                btn.textContent = 'OK !';
             }
-        });
+        } catch {
+            msg.textContent = 'Une erreur est survenue, réessaie.';
+        } finally {
+            btn.disabled = false;
+            btn.textContent = "S'inscrire";
+        }
+    });
 
-        document.getElementById('event-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('reg-btn');
-            const msg = document.getElementById('reg-msg');
-            const email = document.getElementById('reg-email').value.trim();
-            const prenom = document.getElementById('reg-prenom').value.trim();
-            const nom = document.getElementById('reg-nom').value.trim();
-            const tel = document.getElementById('reg-tel').value.trim();
+    document.getElementById('event-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('reg-btn');
+        const msg = document.getElementById('reg-msg');
+        const email = document.getElementById('reg-email').value.trim();
+        const prenom = document.getElementById('reg-prenom').value.trim();
+        const nom = document.getElementById('reg-nom').value.trim();
+        const tel = document.getElementById('reg-tel').value.trim();
 
-            msg.className = 'reg-msg';
-            msg.textContent = '';
+        msg.className = 'reg-msg';
+        msg.textContent = '';
 
-            if (!prenom || !nom || !email) {
-                msg.className = 'reg-msg error';
-                msg.textContent = 'Veuillez remplir tous les champs obligatoires.';
-                return;
-            }
+        if (!prenom || !nom || !email) {
+            msg.className = 'reg-msg error';
+            msg.textContent = 'Veuillez remplir tous les champs obligatoires.';
+            return;
+        }
 
-            btn.disabled = true;
-            btn.textContent = 'Inscription en cours…';
+        btn.disabled = true;
+        btn.textContent = 'Inscription en cours…';
 
-            const attributes = { PRENOM: prenom, NOM: nom };
-            if (tel) {
-                let phone = tel.replace(/[\s.\-()]/g, '');
-                if (phone.startsWith('0')) phone = '+33' + phone.slice(1);
-                else if (!phone.startsWith('+')) phone = '+33' + phone;
-                attributes.SMS = phone;
-            }
+        const attributes = { PRENOM: prenom, NOM: nom };
+        if (tel) {
+            let phone = tel.replace(/[\s.\-()]/g, '');
+            if (phone.startsWith('0')) phone = '+33' + phone.slice(1);
+            else if (!phone.startsWith('+')) phone = '+33' + phone;
+            attributes.SMS = phone;
+        }
 
-            try {
-                const res = await fetch('https://api.brevo.com/v3/contacts', {
+        try {
+            const res = await fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
+                body: JSON.stringify({
+                    email,
+                    attributes,
+                    listIds: [16],
+                    updateEnabled: true
+                })
+            });
+
+            if (res.ok || res.status === 204) {
+                await fetch('https://api.brevo.com/v3/smtp/email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'api-key': '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'
                     },
                     body: JSON.stringify({
-                        email,
-                        attributes,
-                        listIds: [16],
-                        updateEnabled: true
+                        templateId: 5,
+                        to: [{ email, name: `${prenom} ${nom}` }]
                     })
                 });
-
-                if (res.ok || res.status === 204) {
-                    await fetch('https://api.brevo.com/v3/smtp/email', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'api-key': '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'
-                        },
-                        body: JSON.stringify({
-                            templateId: 5,
-                            to: [{ email, name: `${prenom} ${nom}` }]
-                        })
-                    });
+                msg.className = 'reg-msg success';
+                msg.textContent = '✓ Votre inscription est confirmée. À très vite !';
+                e.target.reset();
+            } else {
+                const data = await res.json();
+                if (data.code === 'duplicate_parameter') {
                     msg.className = 'reg-msg success';
-                    msg.textContent = '✓ Votre inscription est confirmée. À très vite !';
-                    e.target.reset();
+                    msg.textContent = '✓ Vous êtes déjà inscrit·e. À très vite !';
                 } else {
-                    const data = await res.json();
-                    if (data.code === 'duplicate_parameter') {
-                        msg.className = 'reg-msg success';
-                        msg.textContent = '✓ Vous êtes déjà inscrit·e. À très vite !';
-                    } else {
-                        throw new Error(data.message || 'Erreur inconnue');
-                    }
+                    throw new Error(data.message || 'Erreur inconnue');
                 }
-            } catch (err) {
-                msg.className = 'reg-msg error';
-                msg.textContent = 'Une erreur est survenue. Réessayez ou contactez-nous à contact@arpentons.fr.';
-            } finally {
-                btn.disabled = false;
-                btn.textContent = "S'inscrire";
             }
-        });
-    </script>
-    </body>
+        } catch (err) {
+            msg.className = 'reg-msg error';
+            msg.textContent = 'Une erreur est survenue. Réessayez ou contactez-nous à contact@arpentons.fr.';
+        } finally {
+            btn.disabled = false;
+            btn.textContent = "S'inscrire";
+        }
+    });
+</script>
+</body>
 </html>
