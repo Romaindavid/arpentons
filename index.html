@@ -30,10 +30,39 @@
 
         .container { max-width: 720px; margin: auto; padding: 0 1.5rem; }
 
-        .registration-box { 
-            border: var(--border); margin-top: -25px; background: white; padding: 5px; box-shadow: 10px 10px 0px var(--accent); 
+        .registration-box {
+            border: var(--border); margin-top: -25px; background: white; padding: 2rem; box-shadow: 10px 10px 0px var(--accent);
         }
-        iframe { width: 100%; height: 1150px; border: none; display: block; }
+
+        .reg-event-img { width: 100%; height: auto; display: block; margin-bottom: 1.5rem; }
+
+        .reg-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin: 0 0 1rem 0; }
+
+        .reg-desc { font-size: 0.95rem; color: #555; margin-bottom: 1.5rem; border-top: 1px solid #e5edf6; border-bottom: 1px solid #e5edf6; padding: 1rem 0; }
+
+        .reg-form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .reg-form label { font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 4px; }
+
+        .reg-form input { width: 100%; padding: 10px 12px; border: 2px solid var(--ink); font-family: 'Spectral', serif; font-size: 1rem; box-sizing: border-box; background: var(--paper); }
+
+        .reg-form input:focus { outline: none; border-color: var(--accent); }
+
+        .reg-form input::placeholder { color: #aab; }
+
+        .reg-hint { font-size: 0.78rem; color: #8390a4; margin-top: 3px; }
+
+        .reg-submit { padding: 12px 30px; background: var(--ink); color: white; border: none; font-family: 'Spectral', serif; font-size: 1rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; align-self: flex-start; }
+
+        .reg-submit:hover { background: var(--accent); }
+
+        .reg-submit:disabled { opacity: 0.6; cursor: default; }
+
+        .reg-msg { padding: 12px 16px; border-radius: 2px; font-size: 0.95rem; display: none; margin-top: 0.5rem; }
+
+        .reg-msg.success { background: #e7faf0; color: #085229; border: 1px solid #13ce66; display: block; }
+
+        .reg-msg.error { background: #ffeded; color: #661d1d; border: 1px solid #ff4949; display: block; }
 
         h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 4rem 0 1.5rem 0; display: inline-block; position: relative; }
         h2::after { content: ""; position: absolute; bottom: 5px; left: 0; width: 100%; height: 12px; background: var(--highlight); z-index: -1; opacity: 0.5; }
@@ -64,14 +93,11 @@
         .team-photo { width: 100%; display: block; }
 
         footer { border-top: var(--border); padding: 4rem 1rem; text-align: center; background: var(--ink); color: var(--paper); }
-        @media (max-width: 600px) { 
-    h1 { font-size: 2.8rem; } 
-    
-    /* on augmente la hauteur ici car le formulaire s'allonge sur mobile */
-    iframe { height: 1550px; } 
-    
-    .newsletter-section input { width: 100%; margin-bottom: 10px; } 
-}
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem; }
+            .newsletter-section input { width: 100%; margin-bottom: 10px; }
+            .reg-submit { width: 100%; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -84,7 +110,35 @@
 
     <div class="container">
         <div class="registration-box">
-            <iframe src="https://022ace13.sibforms.com/serve/MUIFANK-QZgIstAWketPbAO1tM7BYzAz0cI1IzlDSYOAscVOGaLuck8JwGjsvtxG9Lnh0ESLaQkzxUA60W3HW-OXqKa5kVkQ_x1t2J9vSLNQdbndEyGk2pCAUjEXa0GFflsagX3zaqGN9qI34zUs1Xizy6SPjr5cFg9va66d5bGE4heIZOh2PNZBmv_e67sthtZG4Y606e8dczCN6A==" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            <img class="reg-event-img" src="https://img.mailinblue.com/10524979/images/content_library/original/69ef8e1fb02f8015abba1839.png" alt="Prochain arpentage">
+            <p class="reg-title">Inscrivez-vous au prochain arpentage :</p>
+            <div class="reg-desc">
+                <p>📆 <strong>Lundi 4 mai</strong>, de 18h30 - 21h30 (accueil dès 18h)<br>
+                📍 Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle</p>
+                <p>📘 <strong>« La fin du courage »</strong> de Cynthia Fleury<br>
+                Dans cet essai philosophique, Cynthia Fleury interroge la disparition du courage dans nos démocraties contemporaines. Un essai exigeant et salutaire.</p>
+            </div>
+            <form class="reg-form" id="event-form" novalidate>
+                <div>
+                    <label for="reg-prenom">Prénom</label>
+                    <input type="text" id="reg-prenom" name="PRENOM" placeholder="Votre prénom" required>
+                </div>
+                <div>
+                    <label for="reg-nom">Nom</label>
+                    <input type="text" id="reg-nom" name="NOM" placeholder="Votre nom" required>
+                </div>
+                <div>
+                    <label for="reg-tel">Téléphone <span style="font-weight:400">(facultatif)</span></label>
+                    <input type="tel" id="reg-tel" name="SMS" placeholder="Ex : 0612345678">
+                    <p class="reg-hint">Uniquement pour vous contacter en cas d'urgence le jour J.</p>
+                </div>
+                <div>
+                    <label for="reg-email">Email *</label>
+                    <input type="email" id="reg-email" name="EMAIL" placeholder="votre@email.com" required>
+                </div>
+                <div class="reg-msg" id="reg-msg"></div>
+                <button type="submit" class="reg-submit" id="reg-btn">S'inscrire</button>
+            </form>
         </div>
 
         <section>
@@ -140,5 +194,72 @@
         <p><strong>ARPENTONS ! — LA ROCHELLE</strong></p>
     </footer>
 
+    <script>
+        document.getElementById('event-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('reg-btn');
+            const msg = document.getElementById('reg-msg');
+            const email = document.getElementById('reg-email').value.trim();
+            const prenom = document.getElementById('reg-prenom').value.trim();
+            const nom = document.getElementById('reg-nom').value.trim();
+            const tel = document.getElementById('reg-tel').value.trim();
+
+            msg.className = 'reg-msg';
+            msg.textContent = '';
+
+            if (!prenom || !nom || !email) {
+                msg.className = 'reg-msg error';
+                msg.textContent = 'Veuillez remplir tous les champs obligatoires.';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Inscription en cours…';
+
+            const attributes = { PRENOM: prenom, NOM: nom };
+            if (tel) {
+                let phone = tel.replace(/[\s.\-()]/g, '');
+                if (phone.startsWith('0')) phone = '+33' + phone.slice(1);
+                else if (!phone.startsWith('+')) phone = '+33' + phone;
+                attributes.SMS = phone;
+            }
+
+            try {
+                const res = await fetch('https://api.brevo.com/v3/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': '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'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        attributes,
+                        listIds: [14],
+                        updateEnabled: true
+                    })
+                });
+
+                if (res.ok || res.status === 204) {
+                    msg.className = 'reg-msg success';
+                    msg.textContent = '✓ Votre inscription est confirmée. À très vite !';
+                    e.target.reset();
+                } else {
+                    const data = await res.json();
+                    if (data.code === 'duplicate_parameter') {
+                        msg.className = 'reg-msg success';
+                        msg.textContent = '✓ Vous êtes déjà inscrit·e. À très vite !';
+                    } else {
+                        throw new Error(data.message || 'Erreur inconnue');
+                    }
+                }
+            } catch (err) {
+                msg.className = 'reg-msg error';
+                msg.textContent = 'Une erreur est survenue. Réessayez ou contactez-nous à contact@arpentons.fr.';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "S'inscrire";
+            }
+        });
+    </script>
     </body>
 </html>
