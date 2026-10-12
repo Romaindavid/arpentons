@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       'Content-Type': 'application/json',
       'api-key': process.env.BREVO_API_KEY
     },
-    body: JSON.stringify({ email, attributes, listIds: [16], updateEnabled: true })
+    body: JSON.stringify({ email, attributes, listIds: [17], updateEnabled: true })
   });
 
   if (brevoRes.ok || brevoRes.status === 204) {
