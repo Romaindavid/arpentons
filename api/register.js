@@ -37,17 +37,21 @@ export default async function handler(req, res) {
     }
   }
 
-  fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': process.env.BREVO_API_KEY
-    },
-    body: JSON.stringify({
-      templateId: 5,
-      to: [{ email, name: `${prenom} ${nom}` }]
-    })
-  }).catch(() => {});
+  // Attendre l'envoi : sur Vercel, la fonction est figée dès que la réponse part,
+  // un fetch non attendu n'atteint jamais Brevo. Un échec ne bloque pas l'inscription.
+  try {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY
+      },
+      body: JSON.stringify({
+        templateId: 5,
+        to: [{ email, name: `${prenom} ${nom}` }]
+      })
+    });
+  } catch {}
 
   return res.status(200).json({ ok: true });
 }
