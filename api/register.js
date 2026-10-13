@@ -11,9 +11,8 @@ export default async function handler(req, res) {
   let phone = tel.replace(/[\s.\-()]/g, '');
   if (phone.startsWith('0')) phone = '+33' + phone.slice(1);
   else if (!phone.startsWith('+')) phone = '+33' + phone;
-  const attributes = { PRENOM: prenom, NOM: nom, SMS: phone };
 
-  const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+  const addContact = (attributes) => fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,26 +21,33 @@ export default async function handler(req, res) {
     body: JSON.stringify({ email, attributes, listIds: [17], updateEnabled: true })
   });
 
-  if (brevoRes.ok || brevoRes.status === 204) {
-    fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY
-      },
-      body: JSON.stringify({
-        templateId: 5,
-        to: [{ email, name: `${prenom} ${nom}` }]
-      })
-    }).catch(() => {});
+  let brevoRes = await addContact({ PRENOM: prenom, NOM: nom, SMS: phone });
 
-    return res.status(200).json({ ok: true });
+  // Brevo refuse un numéro SMS déjà associé à un autre contact :
+  // on inscrit quand même la personne, avec le numéro dans un attribut non unique.
+  if (!brevoRes.ok) {
+    const data = await brevoRes.json().catch(() => ({}));
+    if (data.code !== 'duplicate_parameter') {
+      return res.status(brevoRes.status).json({ error: data.message || 'Erreur Brevo' });
+    }
+    brevoRes = await addContact({ PRENOM: prenom, NOM: nom, TELEPHONE: phone });
+    if (!brevoRes.ok) {
+      const retry = await brevoRes.json().catch(() => ({}));
+      return res.status(brevoRes.status).json({ error: retry.message || 'Erreur Brevo' });
+    }
   }
 
-  const data = await brevoRes.json().catch(() => ({}));
-  if (data.code === 'duplicate_parameter') {
-    return res.status(200).json({ ok: true, duplicate: true });
-  }
+  fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': process.env.BREVO_API_KEY
+    },
+    body: JSON.stringify({
+      templateId: 5,
+      to: [{ email, name: `${prenom} ${nom}` }]
+    })
+  }).catch(() => {});
 
-  return res.status(brevoRes.status).json({ error: data.message || 'Erreur Brevo' });
+  return res.status(200).json({ ok: true });
 }

@@ -351,9 +351,7 @@
 
             if (res.ok) {
                 msg.className = 'reg-msg success';
-                msg.textContent = data.duplicate
-                    ? '✓ Vous êtes déjà inscrit·e. À très vite !'
-                    : '✓ Votre inscription est confirmée. À très vite !';
+                msg.textContent = '✓ Votre inscription est confirmée. À très vite !';
                 e.target.reset();
             } else {
                 throw new Error(data.error || 'Erreur inconnue');
