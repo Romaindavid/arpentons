@@ -151,8 +151,8 @@
                     <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-email" name="EMAIL" placeholder="votre@email.com" type="email" required>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="reg-tel">Téléphone <span class="text-[10px] font-normal opacity-70 italic">(facultatif)</span></label>
-                    <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-tel" name="SMS" placeholder="06 00 00 00 00" type="tel">
+                    <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="reg-tel">Téléphone *</label>
+                    <input class="bg-transparent border-0 border-b border-ink-subtle focus:ring-0 focus:border-secondary px-0 py-2 placeholder:text-outline/50" id="reg-tel" name="SMS" placeholder="06 00 00 00 00" type="tel" required>
                     <p class="text-[11px] text-on-surface-variant mt-1 opacity-70">Uniquement pour vous contacter en cas d'urgence le jour J.</p>
                 </div>
                 <div class="reg-msg" id="reg-msg"></div>
@@ -326,9 +326,15 @@
         msg.className = 'reg-msg';
         msg.textContent = '';
 
-        if (!prenom || !nom || !email) {
+        if (!prenom || !nom || !email || !tel) {
             msg.className = 'reg-msg error';
             msg.textContent = 'Veuillez remplir tous les champs obligatoires.';
+            return;
+        }
+
+        if (tel.replace(/\D/g, '').length < 10) {
+            msg.className = 'reg-msg error';
+            msg.textContent = 'Veuillez saisir un numéro de téléphone valide.';
             return;
         }
 

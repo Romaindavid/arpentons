@@ -4,17 +4,14 @@ export default async function handler(req, res) {
   }
 
   const { email, prenom, nom, tel } = req.body || {};
-  if (!email || !prenom || !nom) {
+  if (!email || !prenom || !nom || !tel) {
     return res.status(400).json({ error: 'Champs requis manquants' });
   }
 
-  const attributes = { PRENOM: prenom, NOM: nom };
-  if (tel) {
-    let phone = tel.replace(/[\s.\-()]/g, '');
-    if (phone.startsWith('0')) phone = '+33' + phone.slice(1);
-    else if (!phone.startsWith('+')) phone = '+33' + phone;
-    attributes.SMS = phone;
-  }
+  let phone = tel.replace(/[\s.\-()]/g, '');
+  if (phone.startsWith('0')) phone = '+33' + phone.slice(1);
+  else if (!phone.startsWith('+')) phone = '+33' + phone;
+  const attributes = { PRENOM: prenom, NOM: nom, SMS: phone };
 
   const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
