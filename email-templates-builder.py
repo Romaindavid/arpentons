@@ -262,7 +262,7 @@ rappel_body = f"""
       <tr>
         <td style="background:{C['secondary']};padding:20px 24px;">
           <p style="margin:0; font-size:14px; line-height:1.6; color:{C['white']};">
-            <strong>⚠️ Important :</strong> L'arpentage est un puzzle humain. Si tu ne peux finalement pas venir, préviens Romain au <strong>06 15 31 00 77</strong> le plus tôt possible !
+            <strong>⚠️ Important :</strong> L'arpentage est un puzzle humain. Si tu ne peux finalement pas venir, préviens Coralie au <strong>06 50 68 61 89</strong> le plus tôt possible !
           </p>
         </td>
       </tr>
