@@ -225,8 +225,60 @@ invitation_body = f"""
   </td>
 </tr>"""
 
+# ── TEMPLATE RAPPEL (veille, aux inscrit·es) ─────────────────────────────────
+
+rappel_body = f"""
+<tr>
+  <td style="padding:40px 36px 32px;">
+
+    <!-- Accroche -->
+    <p style="margin:0 0 6px; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:{C['secondary']};">Rappel</p>
+    <p style="margin:0 0 24px; font-family:'Libre Caslon Text',Georgia,serif; font-size:26px; font-weight:700; color:{C['primary']}; line-height:1.2;">C'est demain !</p>
+
+    <p style="margin:0 0 28px; font-size:15px; line-height:1.7; color:{C['muted']};">
+      Salut {{{{ contact.PRENOM }}}},<br><br>
+      Petit rappel : on se retrouve demain soir pour arpenter ensemble <em>« Comment la non-violence protège l'État »</em> de Peter Gelderloos. On compte sur toi !
+    </p>
+
+    <!-- Infos pratiques -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;">
+      <tr>
+        <td style="background:{C['surface']};border:1px solid {C['outline']};padding:20px 24px;">
+          <p style="margin:0; font-size:15px; line-height:1.9; color:{C['primary']};">
+            📍 <strong>Lieu :</strong> Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle.<br>
+            📅 <strong>Date :</strong> Lundi 19 octobre 2026.<br>
+            🕒 <strong>Horaires :</strong> 18h00 (accueil/apéro) — 18h30 (début de l'atelier) — 21h30 (fin).
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0 0 24px; font-size:14px; line-height:1.6; color:{C['muted']};">
+      N'hésite pas à apporter un petit truc à grignoter ou à boire pour l'apéro. Le livre est fourni : une cagnotte sera là pour une contribution libre et consciente.
+    </p>
+
+    <!-- Alerte -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:32px;">
+      <tr>
+        <td style="background:{C['secondary']};padding:20px 24px;">
+          <p style="margin:0; font-size:14px; line-height:1.6; color:{C['white']};">
+            <strong>⚠️ Important :</strong> L'arpentage est un puzzle humain. Si tu ne peux finalement pas venir, préviens Romain au <strong>06 15 31 00 77</strong> le plus tôt possible !
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0; font-size:15px; line-height:1.7; color:{C['muted']}; font-style:italic;">
+      À demain,<br>
+      <strong style="font-style:normal; color:{C['primary']};">Le collectif Arpentons !</strong>
+    </p>
+
+  </td>
+</tr>"""
+
 html_confirmation = wrap(confirmation_body)
 html_invitation = wrap(invitation_body)
+html_rappel = wrap(rappel_body)
 
 with open('/tmp/template_confirmation_new.html', 'w') as f:
     f.write(html_confirmation)
@@ -255,5 +307,20 @@ with open('/tmp/payload_confirmation.json', 'w') as f:
 
 with open('/tmp/payload_invitation.json', 'w') as f:
     f.write(payload_invitation)
+
+payload_rappel = json.dumps({
+    "name": "Rappel J-1 - arpentage du 19 octobre",
+    "subject": "C'est demain - on vous attend dès 18h !",
+    "previewText": "Rappel : on arpente Peter Gelderloos demain soir à 18h30.",
+    "sender": {"name": "Collectif Arpentons !", "email": "collectif@arpentons.fr"},
+    "htmlContent": html_rappel,
+    "recipients": {"listIds": [17]}
+})
+
+with open('/tmp/template_rappel_new.html', 'w') as f:
+    f.write(html_rappel)
+
+with open('/tmp/payload_rappel.json', 'w') as f:
+    f.write(payload_rappel)
 
 print("OK — fichiers prêts")
