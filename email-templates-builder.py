@@ -28,7 +28,7 @@ FOOTER = f"""
     <p style="margin:0 0 8px; font-family:'Libre Caslon Text',Georgia,serif; font-size:16px; color:{C['white']}; font-weight:700;">Arpentons !</p>
     <p style="margin:0; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:12px; color:{C['secondary_fixed']}; opacity:0.8;">
       <a href="https://arpentons.fr" style="color:{C['secondary_fixed']}; text-decoration:none;">www.arpentons.fr</a>
-      &nbsp;·&nbsp; contact@arpentons.fr
+      &nbsp;·&nbsp; collectif@arpentons.fr
     </p>
   </td>
 </tr>"""
