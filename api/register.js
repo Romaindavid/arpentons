@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       'Content-Type': 'application/json',
       'api-key': process.env.BREVO_API_KEY
     },
-    body: JSON.stringify({ email, attributes, listIds: [17], updateEnabled: true })
+    body: JSON.stringify({ email, attributes, listIds: [18], updateEnabled: true })
   });
 
   let brevoRes = await addContact({ PRENOM: prenom, NOM: nom, SMS: phone });

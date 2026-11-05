@@ -79,7 +79,7 @@ confirmation_body = f"""
         <td style="background:{C['surface']};border:1px solid {C['outline']};padding:20px 24px;">
           <p style="margin:0; font-size:15px; line-height:1.9; color:{C['primary']};">
             📍 <strong>Lieu :</strong> Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle.<br>
-            📅 <strong>Date :</strong> Lundi 19 octobre 2026.<br>
+            📅 <strong>Date :</strong> Vendredi 13 novembre 2026.<br>
             🕒 <strong>Horaires :</strong> 18h00 (accueil/apéro) — 18h30 (début de l'atelier).
           </p>
         </td>
@@ -91,9 +91,9 @@ confirmation_body = f"""
       <tr>
         <td style="background:{C['bg']};border-left:4px solid {C['secondary_fixed']};padding:20px 24px;">
           <p style="margin:0 0 4px; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:{C['secondary']};">Le livre à l'honneur</p>
-          <p style="margin:0 0 8px; font-family:'Libre Caslon Text',Georgia,serif; font-size:17px; font-weight:700; color:{C['primary']}; font-style:italic;">« Comment la non-violence protège l'État » — Peter Gelderloos</p>
+          <p style="margin:0 0 8px; font-family:'Libre Caslon Text',Georgia,serif; font-size:17px; font-weight:700; color:{C['primary']}; font-style:italic;">« Les vipères ne tombent pas du ciel » — Éric Aeschimann</p>
           <p style="margin:0; font-size:14px; line-height:1.6; color:{C['muted']};">
-            La plupart des mouvements sociaux et écologistes s'en tiennent strictement à la non-violence. Peter Gelderloos soutient que cet attachement dogmatique est l'une des principales causes de leur inefficacité face à la violence du capitalisme et de l'État.
+            Pourquoi l'écologie est-elle rejetée par une partie des classes populaires ? Éric Aeschimann y voit d'abord une réaction aux inégalités grandissantes, et appelle à s'attaquer aux grands systèmes polluants et injustes plutôt qu'aux comportements individuels.
           </p>
         </td>
       </tr>
@@ -168,9 +168,9 @@ invitation_body = f"""
       <tr>
         <td style="background:{C['bg']};border-left:4px solid {C['secondary_fixed']};padding:20px 24px;">
           <p style="margin:0 0 4px; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:{C['secondary']};">Le livre à l'honneur</p>
-          <p style="margin:0 0 8px; font-family:'Libre Caslon Text',Georgia,serif; font-size:17px; font-weight:700; color:{C['primary']}; font-style:italic;">« Comment la non-violence protège l'État » — Peter Gelderloos</p>
+          <p style="margin:0 0 8px; font-family:'Libre Caslon Text',Georgia,serif; font-size:17px; font-weight:700; color:{C['primary']}; font-style:italic;">« Les vipères ne tombent pas du ciel » — Éric Aeschimann</p>
           <p style="margin:0; font-size:14px; line-height:1.6; color:{C['muted']}; font-style:italic;">
-            La plupart des mouvements sociaux et écologistes s'en tiennent strictement à la non-violence, qu'ils considèrent comme la seule méthode de lutte acceptable. Pourtant, ils échouent pour la plupart. Peter Gelderloos soutient que cet attachement dogmatique est l'une des principales causes de leur inefficacité. Sans faire l'apologie d'une violence irraisonnée, il démonte les arguments qui font de la non-violence la seule réponse légitime à la violence du capitalisme et de l'État.
+            En 1976, une rumeur court la campagne française : les écologistes lâcheraient des vipères par avion. Une fausse nouvelle, révélatrice d'une hostilité naissante envers ceux qui prétendent apprendre à « respecter la nature ». Sans rien renier de l'écologie, Éric Aeschimann cherche à comprendre et à désamorcer le rejet dont elle est l'objet dans une partie des classes populaires : il y voit d'abord une réaction aux inégalités grandissantes. Plutôt que de stigmatiser les comportements individuels, l'écologie devrait s'attaquer aux grands systèmes polluants et injustes qui assoient la domination des plus riches.
           </p>
         </td>
       </tr>
@@ -182,7 +182,7 @@ invitation_body = f"""
         <td style="background:{C['surface']};border:1px solid {C['outline']};padding:20px 24px;">
           <p style="margin:0; font-size:15px; line-height:1.9; color:{C['primary']};">
             📍 <strong>Lieu :</strong> Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle.<br>
-            📅 <strong>Date :</strong> Lundi 19 octobre 2026.<br>
+            📅 <strong>Date :</strong> Vendredi 13 novembre 2026.<br>
             🕒 <strong>Horaires :</strong> 18h30 — 21h30 (accueil dès 18h).
           </p>
         </td>
@@ -237,7 +237,7 @@ rappel_body = f"""
 
     <p style="margin:0 0 28px; font-size:15px; line-height:1.7; color:{C['muted']};">
       Salut {{{{ contact.PRENOM }}}},<br><br>
-      Petit rappel : on se retrouve demain soir pour arpenter ensemble <em>« Comment la non-violence protège l'État »</em> de Peter Gelderloos. On compte sur toi !
+      Petit rappel : on se retrouve demain soir pour arpenter ensemble <em>« Les vipères ne tombent pas du ciel »</em> d'Éric Aeschimann. On compte sur toi !
     </p>
 
     <!-- Infos pratiques -->
@@ -246,7 +246,7 @@ rappel_body = f"""
         <td style="background:{C['surface']};border:1px solid {C['outline']};padding:20px 24px;">
           <p style="margin:0; font-size:15px; line-height:1.9; color:{C['primary']};">
             📍 <strong>Lieu :</strong> Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle.<br>
-            📅 <strong>Date :</strong> Lundi 19 octobre 2026.<br>
+            📅 <strong>Date :</strong> Vendredi 13 novembre 2026.<br>
             🕒 <strong>Horaires :</strong> 18h00 (accueil/apéro) — 18h30 (début de l'atelier) — 21h30 (fin).
           </p>
         </td>
@@ -294,9 +294,9 @@ payload_confirmation = json.dumps({
 })
 
 payload_invitation = json.dumps({
-    "name": "Invitation - arpentage du 19 octobre",
-    "subject": "Le prochain arpentage — 19 octobre !",
-    "previewText": "Inscris-toi à la prochaine session — lundi 19 octobre à La Rochelle.",
+    "name": "Invitation - arpentage du 13 novembre",
+    "subject": "Le prochain arpentage — 13 novembre !",
+    "previewText": "Inscris-toi à la prochaine session — vendredi 13 novembre à La Rochelle.",
     "sender": {"name": "Collectif Arpentons !", "email": "collectif@arpentons.fr"},
     "htmlContent": html_invitation,
     "recipients": {"listIds": [2]}
@@ -309,12 +309,12 @@ with open('/tmp/payload_invitation.json', 'w') as f:
     f.write(payload_invitation)
 
 payload_rappel = json.dumps({
-    "name": "Rappel J-1 - arpentage du 19 octobre",
+    "name": "Rappel J-1 - arpentage du 13 novembre",
     "subject": "C'est demain - on vous attend dès 18h !",
-    "previewText": "Rappel : on arpente Peter Gelderloos demain soir à 18h30.",
+    "previewText": "Rappel : on arpente « Les vipères ne tombent pas du ciel » demain soir à 18h30.",
     "sender": {"name": "Collectif Arpentons !", "email": "collectif@arpentons.fr"},
     "htmlContent": html_rappel,
-    "recipients": {"listIds": [17]}
+    "recipients": {"listIds": [18]}
 })
 
 with open('/tmp/template_rappel_new.html', 'w') as f:
