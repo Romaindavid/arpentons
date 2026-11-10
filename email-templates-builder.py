@@ -225,6 +225,66 @@ invitation_body = f"""
   </td>
 </tr>"""
 
+# ── TEMPLATE RELANCE (aux non-inscrit·es, quelques jours avant) ─────────────
+
+relance_body = f"""
+<tr>
+  <td style="padding:40px 36px 32px;">
+
+    <!-- Accroche -->
+    <p style="margin:0 0 6px; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:{C['secondary']};">Vendredi 13 novembre</p>
+    <p style="margin:0 0 24px; font-family:'Libre Caslon Text',Georgia,serif; font-size:26px; font-weight:700; color:{C['primary']}; line-height:1.2;">Il reste des places !</p>
+
+    <p style="margin:0 0 28px; font-size:15px; line-height:1.7; color:{C['muted']};">
+      Salut !<br><br>
+      Vendredi, rejoins-nous pour arpenter un super livre sur l'écologie et les classes populaires. Pas besoin de l'avoir lu, ni d'y connaître quoi que ce soit : on le découvre ensemble.
+    </p>
+
+    <!-- Livre -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;">
+      <tr>
+        <td style="background:{C['bg']};border-left:4px solid {C['secondary_fixed']};padding:20px 24px;">
+          <p style="margin:0 0 4px; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:{C['secondary']};">Le livre à l'honneur</p>
+          <p style="margin:0 0 8px; font-family:'Libre Caslon Text',Georgia,serif; font-size:17px; font-weight:700; color:{C['primary']}; font-style:italic;">« Les vipères ne tombent pas du ciel » — Éric Aeschimann</p>
+          <p style="margin:0; font-size:14px; line-height:1.6; color:{C['muted']};">
+            Pourquoi l'écologie est-elle rejetée par une partie des classes populaires ? Éric Aeschimann y voit d'abord une réaction aux inégalités grandissantes, et appelle à s'attaquer aux grands systèmes polluants et injustes plutôt qu'aux comportements individuels.
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Infos pratiques -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:28px;">
+      <tr>
+        <td style="background:{C['surface']};border:1px solid {C['outline']};padding:20px 24px;">
+          <p style="margin:0; font-size:15px; line-height:1.9; color:{C['primary']};">
+            📍 <strong>Lieu :</strong> Collectif Actions Solidaires, 21 Rue Sardinerie, La Rochelle.<br>
+            📅 <strong>Date :</strong> Vendredi 13 novembre 2026.<br>
+            🕒 <strong>Horaires :</strong> 18h30 — 21h30 (accueil dès 18h).
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <!-- CTA -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:32px;">
+      <tr>
+        <td align="center">
+          <a href="https://arpentons.fr" style="display:inline-block; background:{C['secondary']}; color:{C['white']}; font-family:'Hanken Grotesk',Arial,sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:14px 32px; border:2px solid {C['primary']};">
+            JE M'INSCRIS
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0; font-size:15px; line-height:1.7; color:{C['muted']}; font-style:italic;">
+      À vendredi, on l'espère !<br>
+      <strong style="font-style:normal; color:{C['primary']};">Le collectif Arpentons !</strong>
+    </p>
+
+  </td>
+</tr>"""
+
 # ── TEMPLATE RAPPEL (veille, aux inscrit·es) ─────────────────────────────────
 
 rappel_body = f"""
@@ -279,6 +339,7 @@ rappel_body = f"""
 html_confirmation = wrap(confirmation_body)
 html_invitation = wrap(invitation_body)
 html_rappel = wrap(rappel_body)
+html_relance = wrap(relance_body)
 
 with open('/tmp/template_confirmation_new.html', 'w') as f:
     f.write(html_confirmation)
@@ -322,5 +383,21 @@ with open('/tmp/template_rappel_new.html', 'w') as f:
 
 with open('/tmp/payload_rappel.json', 'w') as f:
     f.write(payload_rappel)
+
+# Relance : mêmes listes que l'invitation, sauf la liste des inscrit·es (18), exclue
+payload_relance = json.dumps({
+    "name": "Relance - arpentage du 13 novembre",
+    "subject": "Vendredi, viens arpenter un livre sur l'écologie et les classes populaires !",
+    "previewText": "Il reste des places — vendredi 13 novembre, 18h30, à La Rochelle.",
+    "sender": {"name": "Collectif Arpentons !", "email": "collectif@arpentons.fr"},
+    "htmlContent": html_relance,
+    "recipients": {"listIds": [2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 16, 17], "exclusionListIds": [18]}
+})
+
+with open('/tmp/template_relance_new.html', 'w') as f:
+    f.write(html_relance)
+
+with open('/tmp/payload_relance.json', 'w') as f:
+    f.write(payload_relance)
 
 print("OK — fichiers prêts")
